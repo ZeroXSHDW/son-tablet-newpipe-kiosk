@@ -17,22 +17,19 @@ PARENT_FILE="/sdcard/Kiosk/parent_mode.txt"
 PIN_FILE="/data/data/com.termux/files/home/.kiosk_pin"
 LOG_FILE="/data/data/com.termux/files/home/parent_toggle.log"
 
-# ── Default PIN (change this!) ──────────────────────────────────────────────
-DEFAULT_PIN="1234"
-
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"; }
 
 kiosk_helper() {
     LD_LIBRARY_PATH="" LD_PRELOAD="" CLASSPATH=/data/local/tmp/kioskhelper.jar app_process / KioskHelper "$@"
 }
 
-# ── Load saved PIN or use default ────────────────────────────────────────────
-if [ -f "$PIN_FILE" ]; then
-    CORRECT_PIN=$(cat "$PIN_FILE" 2>/dev/null | tr -d '[:space:]')
-else
-    CORRECT_PIN="$DEFAULT_PIN"
-    echo "$DEFAULT_PIN" > "$PIN_FILE"
+# ── Load the private PIN ──────────────────────────────────────────────────────
+if [ ! -s "$PIN_FILE" ]; then
+    log "WARN: PIN file missing - access denied"
+    termux-toast -s "Set a private PIN in ~/.kiosk_pin first" 2>/dev/null || true
+    exit 1
 fi
+CORRECT_PIN=$(cat "$PIN_FILE" 2>/dev/null | tr -d '[:space:]')
 
 # ── Determine current mode label ─────────────────────────────────────────────
 if [ -f "$PARENT_FILE" ] && [ "$(cat $PARENT_FILE 2>/dev/null)" = "true" ]; then

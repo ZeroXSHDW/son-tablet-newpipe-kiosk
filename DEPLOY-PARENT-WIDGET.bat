@@ -89,7 +89,7 @@ echo  5. Select "Parent Toggle" from the list
 echo.
 echo  That's it! One tap on the widget = PIN prompt = toggle.
 echo.
-echo  DEFAULT PIN: 1234
+echo  Set a private PIN during tablet setup.
 echo  To change PIN ^(from tablet Termux^): echo 'NEWPIN' ^> ~/.kiosk_pin
 echo.
 pause

@@ -1,4 +1,4 @@
-# Goal: Son’s tablet kiosk (live)
+# Goal: Android tablet kiosk (live)
 
 ## End state
 
