@@ -83,9 +83,14 @@ them.
    one device is connected, use the explicit serial form instead:
 
    ```powershell
+   .\GET-DEVICE-SERIAL.ps1 -Wait -Copy
    .\DEPLOY-WIFI-ADB.ps1 -DeviceSerial <tablet-serial>
    .\HEALTH-CHECK.ps1 -DeviceSerial <tablet-serial>
    ```
+
+   The serial helper labels USB and Wi-Fi ADB devices, explains
+   `unauthorized`, and copies the only ready serial to the clipboard when
+   possible.
 
 5. On the tablet, allow the Kiosk Booter accessibility service if Android asks.
    Import `newpipe_subscriptions.json` into NewPipe and enable **Autoplay next

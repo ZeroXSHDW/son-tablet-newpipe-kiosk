@@ -34,6 +34,8 @@ For the beginner-friendly setup path, see
   connection, deployment, and mode-control helpers.
 - `CHECK-PREREQUISITES.ps1` — read-only preflight that explains what is
   missing before deployment.
+- `GET-DEVICE-SERIAL.ps1` — shows the tablet's ADB serial and prints ready-to-
+  paste deployment commands.
 - `HEALTH-CHECK.ps1` — live device health checks after deployment or reboot.
 - `tests/` and `.github/workflows/` — local and GitHub Actions repository
   validation.
@@ -60,13 +62,23 @@ For the beginner-friendly setup path, see
    .\WAIT-AND-DEPLOY.ps1
    ```
 
-4. Run the health check with the target serial supplied locally:
+4. If a command asks for `<tablet-serial>`, find it with:
+
+   ```powershell
+   .\GET-DEVICE-SERIAL.ps1 -Wait -Copy
+   ```
+
+   With exactly one authorized device connected, this displays the serial,
+   copies it to the clipboard, and prints the exact deployment and health-check
+   commands.
+
+5. Run the health check with the target serial supplied locally:
 
    ```powershell
    .\HEALTH-CHECK.ps1 -DeviceSerial <tablet-serial>
    ```
 
-5. Before committing source changes, run the repository gate:
+6. Before committing source changes, run the repository gate:
 
    ```powershell
    pwsh -NoProfile -File .\tests\validate-repository.ps1

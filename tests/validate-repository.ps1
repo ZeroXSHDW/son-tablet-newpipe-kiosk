@@ -40,6 +40,7 @@ $requiredFiles = @(
     'BUILD-AND-ARTIFACTS.md',
     'GETTING-STARTED.md',
     'CHECK-PREREQUISITES.ps1',
+    'GET-DEVICE-SERIAL.ps1',
     'DEPLOY-WIFI-ADB.ps1',
     'HEALTH-CHECK.ps1',
     'termux_scripts/kiosk_config.sh',
