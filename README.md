@@ -36,6 +36,8 @@ For the beginner-friendly setup path, see
   missing before deployment.
 - `GET-DEVICE-SERIAL.ps1` — shows the tablet's ADB serial and prints ready-to-
   paste deployment commands.
+- `GET-DEVICE-SERIAL.bat` — double-clickable Windows shortcut for the same
+  serial lookup.
 - `HEALTH-CHECK.ps1` — live device health checks after deployment or reboot.
 - `tests/` and `.github/workflows/` — local and GitHub Actions repository
   validation.
@@ -67,6 +69,8 @@ For the beginner-friendly setup path, see
    ```powershell
    .\GET-DEVICE-SERIAL.ps1 -Wait -Copy
    ```
+
+   On Windows, you can also double-click `GET-DEVICE-SERIAL.bat`.
 
    With exactly one authorized device connected, this displays the serial,
    copies it to the clipboard, and prints the exact deployment and health-check

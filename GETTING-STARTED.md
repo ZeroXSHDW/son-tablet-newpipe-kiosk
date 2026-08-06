@@ -92,6 +92,9 @@ them.
    `unauthorized`, and copies the only ready serial to the clipboard when
    possible.
 
+   On Windows, double-click `GET-DEVICE-SERIAL.bat` to run the same helper
+   without opening PowerShell first.
+
 5. On the tablet, allow the Kiosk Booter accessibility service if Android asks.
    Import `newpipe_subscriptions.json` into NewPipe and enable **Autoplay next
    stream**. The detailed NewPipe steps are in
