@@ -46,10 +46,11 @@ if [ -f "$PIN_FILE" ]; then
     echo "[i] PIN already set. To change it, run: echo 'NEWPIN' > ~/.kiosk_pin"
 else
     echo ""
-    echo -n "[?] Set your Parent PIN (digits only, default=1234): "
+    echo -n "[?] Set your private Parent PIN (digits only): "
     read USER_PIN
     if [ -z "$USER_PIN" ]; then
-        USER_PIN="1234"
+        echo "[✗] PIN cannot be empty"
+        exit 1
     fi
     echo "$USER_PIN" > "$PIN_FILE"
     chmod 600 "$PIN_FILE"

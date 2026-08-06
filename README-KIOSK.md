@@ -1,4 +1,4 @@
-# Son’s tablet — NewPipe 24/7 kiosk
+# Android tablet — NewPipe 24/7 kiosk
 
 ## Goal
 
@@ -71,7 +71,7 @@ Playlist file: `termux_scripts/Kiosk/online_playlist.json` → `/sdcard/Kiosk/`.
 
 ## Parent / child
 
-- PIN widget: Termux `ParentToggle.sh` (default PIN `1234`, change in `~/.kiosk_pin`)  
+- PIN widget: Termux `ParentToggle.sh` (set a private PIN in `~/.kiosk_pin`)
 - PC: `ENABLE-CHILD-MODE.bat` / `ENABLE-PARENT-MODE.bat`  
 
 ## Notes

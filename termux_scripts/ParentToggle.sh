@@ -2,11 +2,14 @@
 # Parent toggle for Termux:Widget — PIN protected
 PARENT_FILE=/sdcard/Kiosk/parent_mode.txt
 PIN_FILE=/data/data/com.termux/files/home/.kiosk_pin
-CORRECT_PIN=1234
 HOME=/data/data/com.termux/files/home
 export PATH=/data/data/com.termux/files/usr/bin:/system/bin:$PATH
 
-[ -f "$PIN_FILE" ] && CORRECT_PIN=$(cat "$PIN_FILE" 2>/dev/null | tr -d '[:space:]')
+if [ ! -s "$PIN_FILE" ]; then
+  termux-toast -s "Set a private PIN in ~/.kiosk_pin first" 2>/dev/null || true
+  exit 1
+fi
+CORRECT_PIN=$(cat "$PIN_FILE" 2>/dev/null | tr -d '[:space:]')
 
 if command -v termux-dialog >/dev/null 2>&1; then
   OUT=$(termux-dialog text -t "Parent PIN" -i "Enter PIN")

@@ -1,4 +1,4 @@
-# Son's tablet kiosk
+# Android NewPipe tablet kiosk
 
 This repository contains the source, configuration, deployment scripts, and
 validation checks for a supervised Android tablet kiosk using NewPipe,
@@ -51,7 +51,7 @@ scripts. The target device, package versions, accessibility permissions, and
 live playback state must be verified on the actual tablet; a passing source
 validation run is not a substitute for that device check.
 
-## Publish boundary
+## Public-repository boundary
 
 This checkout intentionally contains source and documentation only. It does
 not include device-local ADB state, cookies, runtime logs, UI captures,
@@ -61,8 +61,7 @@ are ignored by `.gitignore` and should remain outside a public repository.
 The exact target device serial is deliberately not stored in the repository;
 provide it at runtime with `-DeviceSerial`.
 
-No distribution license has been selected in this package. Choose and add an
-appropriate license before describing the repository as open source.
+This project is distributed under the MIT License. See [LICENSE](LICENSE).
 
 ## Important safety notes
 
@@ -71,6 +70,4 @@ appropriate license before describing the repository as open source.
   sleep autoplay.
 - The deployment flow uses the Termux app's `run-as` boundary. Do not replace
   it with an unrestricted copy into Termux's private data directory.
-- Keep the target repository visibility, owner, and remote URL as an explicit
-  user decision. This folder is prepared for upload, but it is not connected
-  to GitHub and no remote push has been performed.
+- Review the target repository visibility and owner before the first push.
