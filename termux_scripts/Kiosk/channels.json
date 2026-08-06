@@ -1,0 +1,55 @@
+{
+  "mode": "subscriptions_only",
+  "description": "ONLY these channels may autoplay. Import into NewPipe as subscriptions. Autoplay uses channel feeds from this list.",
+  "allowed_channels": [
+    {
+      "name": "Ms Rachel",
+      "aliases": ["Ms. Rachel", "MsRachel", "msrachel"],
+      "youtube_urls": [
+        "https://www.youtube.com/@msrachel",
+        "https://www.youtube.com/@msrachel/videos",
+        "https://www.youtube.com/channel/UCG2CL6EUjG8TVT1Tpl9nJdg"
+      ],
+      "channel_videos": "https://www.youtube.com/@msrachel/videos"
+    },
+    {
+      "name": "Tractor Ted",
+      "aliases": ["TractorTed"],
+      "youtube_urls": [
+        "https://www.youtube.com/@TractorTed",
+        "https://www.youtube.com/@TractorTed/videos",
+        "https://www.youtube.com/tractorted"
+      ],
+      "channel_videos": "https://www.youtube.com/@TractorTed/videos"
+    },
+    {
+      "name": "Teletubbies",
+      "aliases": ["Telly Tubbies", "Teletubbies - WildBrain", "WildBrain"],
+      "youtube_urls": [
+        "https://www.youtube.com/@Teletubbies",
+        "https://www.youtube.com/@Teletubbies/videos"
+      ],
+      "channel_videos": "https://www.youtube.com/@Teletubbies/videos"
+    },
+    {
+      "name": "Teletubbies Compilations - WildBrain",
+      "aliases": ["teletubbies - wildbrain", "WildBrain Teletubbies"],
+      "youtube_urls": [
+        "https://www.youtube.com/channel/UCrbHp6Xh0oEOhOozMk9t_wQ",
+        "https://www.youtube.com/channel/UCrbHp6Xh0oEOhOozMk9t_wQ/videos"
+      ],
+      "channel_videos": "https://www.youtube.com/channel/UCrbHp6Xh0oEOhOozMk9t_wQ/videos"
+    },
+    {
+      "name": "edubuzzkids",
+      "aliases": ["deubuzzkids", "EduBuzz KIDS", "edubuzz kids"],
+      "youtube_urls": [
+        "https://www.youtube.com/@edubuzzkids",
+        "https://www.youtube.com/@edubuzzkids/videos",
+        "https://www.youtube.com/user/edubuzzkids"
+      ],
+      "channel_videos": "https://www.youtube.com/@edubuzzkids/videos"
+    }
+  ],
+  "notes": "NewPipe: Import newpipe_subscriptions.json via Subscriptions > Import from previous export. Settings > Player: enable Autoplay next stream + use Main player (fullscreen)."
+}

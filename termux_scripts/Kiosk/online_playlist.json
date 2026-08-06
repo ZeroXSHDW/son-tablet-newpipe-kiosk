@@ -1,0 +1,133 @@
+{
+  "description": "Time-phased autoplay. learning=day, relaxing=evening, bedtime=Ms Rachel sleep, night=ASMR/dark calm only.",
+  "autoplay_24x7": true,
+  "mode": "phase_subscriptions",
+  "playlist": [
+    {
+      "url": "https://www.youtube.com/watch?v=2dDpryw3z5w",
+      "title": "Ms. Rachel - Songs for Little Ones",
+      "channel": "Ms Rachel",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hvt638y_530",
+      "title": "Ms. Rachel - Toddler Learning Speech & Phonics",
+      "channel": "Ms Rachel",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=gT86f1e-hR8",
+      "title": "Ms. Rachel - Learn to Talk & First Words",
+      "channel": "Ms Rachel",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=D0Ajq682yrA",
+      "title": "Ms. Rachel - Letters & Numbers",
+      "channel": "Ms Rachel",
+      "type": "learning",
+      "phases": ["LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=8KtnrtHRiCg",
+      "title": "Ms. Rachel - Animal Learning",
+      "channel": "Ms Rachel",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OyUoskE7Ogk",
+      "title": "Ms. Rachel - Bedtime Routine Stories & Songs",
+      "channel": "Ms Rachel",
+      "type": "bedtime",
+      "phases": ["BEDTIME", "NIGHT"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=di5Luvguy7I",
+      "title": "Tractor Ted Moovie Time",
+      "channel": "Tractor Ted",
+      "type": "learning",
+      "phases": ["LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=y5n3FeVKh2c",
+      "title": "Hello Ewe! Tractor Ted",
+      "channel": "Tractor Ted",
+      "type": "learning",
+      "phases": ["LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=5u5MjifJRLk",
+      "title": "Munchy Crunchy Tractor Ted",
+      "channel": "Tractor Ted",
+      "type": "learning",
+      "phases": ["LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=vt-c2jGvxW8",
+      "title": "Glorious Grass Tractor Ted",
+      "channel": "Tractor Ted",
+      "type": "learning",
+      "phases": ["LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=t9P5K9251Cc",
+      "title": "Massive Farm Adventures Tractor Ted",
+      "channel": "Tractor Ted",
+      "type": "learning",
+      "phases": ["LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zXfzzxH1q8o",
+      "title": "Teletubbies 2 HOUR Compilation WildBrain",
+      "channel": "Teletubbies - WildBrain",
+      "type": "learning",
+      "phases": ["LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=GzlvNZSzU4I",
+      "title": "Classic Teletubbies 3 HOURS",
+      "channel": "Teletubbies - WildBrain",
+      "type": "learning",
+      "phases": ["LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ufCV6c_uJ4c",
+      "title": "Teletubbies Go Outside Compilation",
+      "channel": "Teletubbies - WildBrain",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=DoT3K-jTtr4",
+      "title": "Teletubbies Staying Cool Compilation",
+      "channel": "Teletubbies - WildBrain",
+      "type": "learning",
+      "phases": ["LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-E7KcjVF23o",
+      "title": "Learn Colors edubuzzkids",
+      "channel": "edubuzzkids",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=vCV_jzjhox8",
+      "title": "Wheels on the Bus edubuzzkids",
+      "channel": "edubuzzkids",
+      "type": "learning",
+      "phases": ["MORNING", "LEARNING", "RELAXING"]
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cDsbfQkl7VQ",
+      "title": "Gentle Rain ASMR Lullaby for Kids",
+      "channel": "Wonder Tots TV",
+      "type": "asmr",
+      "phases": ["BEDTIME", "NIGHT"]
+    }
+  ]
+}

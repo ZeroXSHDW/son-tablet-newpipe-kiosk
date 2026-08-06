@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Control Dashboard</title>
+    <style>
+        :root {
+            --bg: #121212;
+            --surface: #1e1e1e;
+            --primary: #bb86fc;
+            --secondary: #03dac6;
+            --error: #cf6679;
+            --text: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #333;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        .status-badge {
+            background-color: var(--surface);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+        }
+        .card {
+            background-color: var(--surface);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 18px;
+            color: var(--secondary);
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        button {
+            background-color: #333;
+            color: var(--text);
+            border: 1px solid #555;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        button:hover {
+            background-color: #444;
+            border-color: var(--primary);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button.active {
+            background-color: rgba(207, 102, 121, 0.2);
+            border-color: var(--error);
+            color: var(--error);
+        }
+        .btn-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        pre {
+            background-color: #000;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #4af626;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Tablet Dashboard</h1>
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            Battery: <span id="battery">--</span>%
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Quick Controls</h2>
+        <div class="controls">
+            <button id="btn-pause" onclick="toggleKioskPause()">
+                <span>Pause Kiosk Guards</span>
+                <span class="btn-subtitle">Allows exiting apps</span>
+            </button>
+            <button onclick="restartContent()">
+                <span>Restart Content</span>
+                <span class="btn-subtitle">Forces video reload</span>
+            </button>
+            <button onclick="refreshHealth()">
+                <span>Refresh Health Report</span>
+                <div class="loader" id="health-loader"></div>
+            </button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>System Health Report</h2>
+        <pre id="health-log">Loading system metrics...</pre>
+    </div>
+</div>
+
+<script>
+    let isPaused = false;
+
+    async function fetchStatus() {
+        try {
+            const res = await fetch('/api/status');
+            const data = await res.json();
+            document.getElementById('battery').textContent = data.battery;
+            
+            isPaused = data.parent_mode === 'true';
+            updatePauseButton();
+        } catch (e) {
+            console.error('Failed to fetch status', e);
+        }
+    }
+
+    async function refreshHealth() {
+        const loader = document.getElementById('health-loader');
+        const log = document.getElementById('health-log');
+        loader.style.display = 'inline-block';
+        log.style.opacity = '0.5';
+        
+        try {
+            const res = await fetch('/api/health');
+            const data = await res.json();
+            log.textContent = data.report || "No report available yet.";
+        } catch (e) {
+            log.textContent = "Error loading health report.\n" + e;
+        } finally {
+            loader.style.display = 'none';
+            log.style.opacity = '1';
+        }
+    }
+
+    async function toggleKioskPause() {
+        const endpoint = isPaused ? '/api/resume_kiosk' : '/api/pause_kiosk';
+        await fetch(endpoint, { method: 'POST' });
+        isPaused = !isPaused;
+        updatePauseButton();
+    }
+
+    async function restartContent() {
+        await fetch('/api/restart_content', { method: 'POST' });
+        alert('Content restart triggered. Watchdog will select a new video shortly.');
+    }
+
+    function updatePauseButton() {
+        const btn = document.getElementById('btn-pause');
+        if (isPaused) {
+            btn.classList.add('active');
+            btn.querySelector('span').textContent = 'Resume Kiosk Guards';
+        } else {
+            btn.classList.remove('active');
+            btn.querySelector('span').textContent = 'Pause Kiosk Guards';
+        }
+    }
+
+    // Initialize
+    fetchStatus();
+    refreshHealth();
+    setInterval(fetchStatus, 5000);
+</script>
+
+</body>
+</html>

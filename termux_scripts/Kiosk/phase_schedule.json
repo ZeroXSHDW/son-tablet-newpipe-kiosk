@@ -1,0 +1,55 @@
+{
+  "timezone_note": "Uses device local time",
+  "phases": [
+    {
+      "id": "MORNING",
+      "start": "06:00",
+      "end": "09:00",
+      "content": "learning",
+      "volume": 12,
+      "brightness": 160,
+      "wallpaper": "adhd_day",
+      "description": "Gentle morning learning — Ms Rachel, edubuzzkids"
+    },
+    {
+      "id": "LEARNING",
+      "start": "09:00",
+      "end": "18:00",
+      "content": "learning",
+      "volume": 12,
+      "brightness": 180,
+      "wallpaper": "adhd_day",
+      "description": "Full day — Ms Rachel, Tractor Ted, Teletubbies, edubuzzkids"
+    },
+    {
+      "id": "RELAXING",
+      "start": "18:00",
+      "end": "20:30",
+      "content": "relaxing",
+      "volume": 12,
+      "brightness": 120,
+      "wallpaper": "adhd_dusk",
+      "description": "Wind-down calmer shows, lower volume"
+    },
+    {
+      "id": "BEDTIME",
+      "start": "20:30",
+      "end": "22:30",
+      "content": "bedtime",
+      "volume": 3,
+      "brightness": 40,
+      "wallpaper": "adhd_night",
+      "description": "Edubuzzkids sleep channel, Ms Rachel fallback"
+    },
+    {
+      "id": "NIGHT",
+      "start": "22:30",
+      "end": "06:00",
+      "content": "night",
+      "volume": 3,
+      "brightness": 25,
+      "wallpaper": "adhd_night",
+      "description": "Edubuzzkids sleep channel, Ms Rachel fallback"
+    }
+  ]
+}

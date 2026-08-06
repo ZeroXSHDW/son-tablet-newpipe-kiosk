@@ -1,0 +1,46 @@
+{
+  "app_version": "0.28.8",
+  "app_version_int": 1013,
+  "subscriptions": [
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCG2CL6EUjG8TVT1Tpl9nJdg",
+      "name": "Ms Rachel - Toddler Learning Videos"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/@msrachel",
+      "name": "Ms Rachel"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/@TractorTed",
+      "name": "Tractor Ted"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/tractorted",
+      "name": "Tractor Ted Official"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/@Teletubbies",
+      "name": "Teletubbies"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCrbHp6Xh0oEOhOozMk9t_wQ",
+      "name": "Teletubbies Compilations - WildBrain"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/@edubuzzkids",
+      "name": "edubuzzkids"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/user/edubuzzkids",
+      "name": "EduBuzz KIDS"
+    }
+  ]
+}

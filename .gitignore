@@ -1,0 +1,60 @@
+# Device-local state, credentials, and runtime output
+tablet-wifi-adb.state.json
+**/cookies.txt
+**/.bash_history
+**/.bash_profile
+**/.bashrc
+**/.power_state
+**/.profile
+**/.uptime_tracking
+**/*.log
+**/*.pid
+**/.cache/
+termux_scripts/Kiosk/last_*
+termux_scripts/Kiosk/subscription_channel_index.txt
+termux_scripts/Kiosk/recovery_counter.txt
+termux_scripts/Kiosk/.play_lock/
+termux_scripts/phase.txt
+termux_scripts/volume_lock_state.txt
+termux_scripts/health_dashboard.txt
+termux_scripts/test_report.txt
+termux_scripts/testfile
+
+# Captured UI/device material
+ui_*.xml
+wallpaper_picker.png
+fullscreen_check.png
+/*.png
+/*.xml
+/tmp_*.sh
+/.tmp_upload/
+termux_scripts/__pycache__/
+
+# Device screenshots copied into the Kiosk data directory during verification
+termux_scripts/Kiosk/final_screen.png
+termux_scripts/Kiosk/live_state.png
+termux_scripts/Kiosk/postrestart_state.png
+termux_scripts/Kiosk/user_visible_full.png
+
+# Historical/runtime health state
+**/.service_state.json
+**/crash_analytics.json
+**/service_restart_history.json
+**/uptime_stats.json
+**/network_state.txt
+**/crash_log_backup.md
+
+# Bundled tools and generated Android artifacts
+platform-tools/
+platform-tools.zip
+**/*.apk
+**/*.idsig
+**/*.jar
+**/*.class
+**/*.dex
+**/bin/
+**/gen/
+**/build/
+**/compiled_resources.zip
+**/*.keystore
+**/debug.keystore

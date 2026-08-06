@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "download_time": "02:00",
+  "frequency": "bi-daily",
+  "networks": ["NETZ"],
+  "allow_online_when_ssid_unreadable": false,
+  "preferred_quality": "360p",
+  "storage_reserve_mb": 2048,
+  "download_root": "/sdcard/Movies",
+  "sources": [
+    "https://www.youtube.com/watch?v=2dDpryw3z5w",
+    "https://www.youtube.com/watch?v=8KtnrtHRiCg",
+    "https://www.youtube.com/watch?v=OyUoskE7Ogk",
+    "https://www.youtube.com/watch?v=1v3Dk41C_10",
+    "https://www.youtube.com/watch?v=di5Luvguy7I",
+    "https://www.youtube.com/watch?v=y5n3FeVKh2c",
+    "https://www.youtube.com/watch?v=5u5MjifJRLk",
+    "https://www.youtube.com/watch?v=zbAI__DVoOI",
+    "https://www.youtube.com/watch?v=vt-c2jGvxW8",
+    "https://www.youtube.com/watch?v=t9P5K9251Cc",
+    "https://www.youtube.com/watch?v=zXfzzxH1q8o",
+    "https://www.youtube.com/watch?v=GzlvNZSzU4I",
+    "https://www.youtube.com/watch?v=ufCV6c_uJ4c",
+    "https://www.youtube.com/watch?v=DoT3K-jTtr4"
+  ],
+  "channels": [
+    "Ms Rachel",
+    "Tractor Ted",
+    "Teletubbies",
+    "edubuzzkids",
+    "Teletubbies - WildBrain"
+  ]
+}

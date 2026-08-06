@@ -1,0 +1,22 @@
+name: Validate kiosk repository
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate source, policy, and configuration
+        shell: pwsh
+        run: ./tests/validate-repository.ps1
