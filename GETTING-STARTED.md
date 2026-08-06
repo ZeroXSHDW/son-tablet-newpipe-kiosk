@@ -60,8 +60,14 @@ them.
    ```
 
 2. Build or restore the ignored APK/JAR artifacts described in
-   [`BUILD-AND-ARTIFACTS.md`](BUILD-AND-ARTIFACTS.md). Confirm that
-   `platform-tools\adb.exe` exists.
+   [`BUILD-AND-ARTIFACTS.md`](BUILD-AND-ARTIFACTS.md). Then run the read-only
+   preflight; it gives a specific fix for every missing host tool or artifact:
+
+   ```powershell
+   .\CHECK-PREREQUISITES.ps1 -RequireArtifacts
+   ```
+
+   Confirm that `platform-tools\adb.exe` exists.
 
 3. Connect the tablet by USB, unlock it, accept the **Allow USB debugging**
    prompt, and keep the screen on.
@@ -85,6 +91,12 @@ them.
    Import `newpipe_subscriptions.json` into NewPipe and enable **Autoplay next
    stream**. The detailed NewPipe steps are in
    [`SUBSCRIPTIONS-SETUP.md`](SUBSCRIPTIONS-SETUP.md).
+
+   To check only the ADB connection before deploying, run:
+
+   ```powershell
+   .\CHECK-PREREQUISITES.ps1 -CheckDevice
+   ```
 
 6. Set a private parent PIN when installing the Termux:Widget shortcut. This
    project intentionally ships no default PIN.

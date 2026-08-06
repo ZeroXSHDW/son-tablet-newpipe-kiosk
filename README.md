@@ -32,6 +32,8 @@ For the beginner-friendly setup path, see
   source for the small Android support apps.
 - `DEPLOY-WIFI-ADB.ps1` and related PowerShell/ batch files — host-side
   connection, deployment, and mode-control helpers.
+- `CHECK-PREREQUISITES.ps1` — read-only preflight that explains what is
+  missing before deployment.
 - `HEALTH-CHECK.ps1` — live device health checks after deployment or reboot.
 - `tests/` and `.github/workflows/` — local and GitHub Actions repository
   validation.
@@ -43,10 +45,15 @@ For the beginner-friendly setup path, see
 
 ## Quick start for an existing setup
 
-1. Install PowerShell 7, Git, Python 3, Bash (Git for Windows is sufficient),
-   and Android platform tools on the host.
+1. Install PowerShell 5.1+, Git, Python 3, Bash (Git for Windows is
+   sufficient), and Android platform tools on the host.
 2. Restore or build the ignored deployment artifacts described in
-   `BUILD-AND-ARTIFACTS.md`: `adb.exe`, the helper JARs, and the support APKs.
+   `BUILD-AND-ARTIFACTS.md`, then run the read-only preflight:
+
+   ```powershell
+   .\CHECK-PREREQUISITES.ps1 -RequireArtifacts
+   ```
+
 3. Pair the target tablet over USB once, enable Wi-Fi ADB, and run:
 
    ```powershell
