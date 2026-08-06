@@ -4,10 +4,27 @@ This repository contains the source, configuration, deployment scripts, and
 validation checks for a supervised Android tablet kiosk using NewPipe,
 Termux, Kiosk Booter, and the optional calm live-wallpaper support app.
 
-The project is intended to keep the tablet in a controlled NewPipe playback
-path, restrict daytime selection to the configured subscriptions, apply
-time-based volume and brightness settings, and recover playback when the
-active session stops.
+The project keeps the tablet in a controlled NewPipe playback path, restricts
+daytime selection to configured subscriptions, applies time-based volume and
+brightness settings, and recovers playback when the active session stops.
+
+## See it at a glance
+
+| Capability | Behavior |
+| --- | --- |
+| Supervised playback | NewPipe fullscreen with recovery after sustained inactivity |
+| Content policy | Five configured subscription channels only during the day |
+| Time phases | Morning, learning, relaxing, bedtime, and night settings |
+| Offline fallback | Permitted cached media can be handed to VLC |
+| Parent controls | Private-PIN parent mode and child kiosk mode |
+| Operations | Boot, Wi-Fi, download, service, and health monitoring |
+
+This is a deployment toolkit for an Android tablet, not a standalone app. It
+uses ADB and Termux to configure and supervise NewPipe and the small support
+apps included in the repository.
+
+For the beginner-friendly setup path, see
+[`GETTING-STARTED.md`](GETTING-STARTED.md).
 
 ## Repository contents
 
@@ -18,11 +35,13 @@ active session stops.
 - `HEALTH-CHECK.ps1` — live device health checks after deployment or reboot.
 - `tests/` and `.github/workflows/` — local and GitHub Actions repository
   validation.
+- `GETTING-STARTED.md` — beginner-friendly explanation, first deployment, and
+  troubleshooting.
 - `README-KIOSK.md`, `ACTIVE-STACK.md`, `GOAL.md`, and
   `BUILD-AND-ARTIFACTS.md` — operating model, active control path, goals, and
   source/artifact boundary.
 
-## Quick start
+## Quick start for an existing setup
 
 1. Install PowerShell 7, Git, Python 3, Bash (Git for Windows is sufficient),
    and Android platform tools on the host.
@@ -46,7 +65,8 @@ active session stops.
    pwsh -NoProfile -File .\tests\validate-repository.ps1
    ```
 
-Read `README-KIOSK.md` and `RELEASE-CHECKLIST.md` before using the deployment
+Read [`README-KIOSK.md`](README-KIOSK.md) and
+[`RELEASE-CHECKLIST.md`](RELEASE-CHECKLIST.md) before using the deployment
 scripts. The target device, package versions, accessibility permissions, and
 live playback state must be verified on the actual tablet; a passing source
 validation run is not a substitute for that device check.
