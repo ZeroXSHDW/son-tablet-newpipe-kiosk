@@ -120,16 +120,19 @@ foreach ($file in Get-ChildItem -LiteralPath $Root -Recurse -File -Filter '*.jso
 }
 
 $python = Get-Command python -ErrorAction SilentlyContinue
+if (-not $python) {
+    $python = Get-Command python3 -ErrorAction SilentlyContinue
+}
 if ($python) {
     foreach ($file in Get-ChildItem -LiteralPath $Root -Recurse -File -Filter '*.py') {
         if ($file.FullName -match '\\.git\\') { continue }
-        & $python.Source -m py_compile -- $file.FullName
+        & $python.Source -m py_compile $file.FullName
         if ($LASTEXITCODE -ne 0) {
             Add-Failure "Python compilation failed: $($file.FullName)"
         }
     }
 } else {
-    Add-Failure 'python is required for Python source validation'
+    Add-Failure 'python or python3 is required for Python source validation'
 }
 
 $bashPath = $null
