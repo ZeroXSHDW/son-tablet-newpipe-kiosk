@@ -114,3 +114,7 @@ This project is distributed under the MIT License. See [LICENSE](LICENSE).
 - The deployment flow uses the Termux app's `run-as` boundary. Do not replace
   it with an unrestricted copy into Termux's private data directory.
 - Review the target repository visibility and owner before the first push.
+
+## Contributing
+
+Keep device identifiers, cookies, logs, APKs, and platform tools outside the repository. Run the documented validators before review and see [CONTRIBUTING.md](CONTRIBUTING.md).
