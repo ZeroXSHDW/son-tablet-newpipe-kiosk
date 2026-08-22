@@ -118,3 +118,15 @@ This project is distributed under the MIT License. See [LICENSE](LICENSE).
 ## Contributing
 
 Keep device identifiers, cookies, logs, APKs, and platform tools outside the repository. Run the documented validators before review and see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Architecture
+
+The repository separates host-side deployment scripts, Termux-side kiosk
+configuration, and documentation. Device state, credentials, cookies, logs,
+and compiled artifacts remain runtime-only inputs.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for private vulnerability reporting. Review the
+target device, repository owner, and Termux `run-as` boundary before any push
+or deployment.
