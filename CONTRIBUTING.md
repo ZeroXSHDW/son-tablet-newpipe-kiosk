@@ -18,5 +18,3 @@ If an external service, device, GPU, cloud credential, or CI account limit preve
 ## Pull requests
 
 Explain the problem, root cause, files changed, verification performed, security or compatibility impact, and remaining limitations. Keep the pull request independently reviewable. A maintainer reviews and merges approved changes.
-
-
