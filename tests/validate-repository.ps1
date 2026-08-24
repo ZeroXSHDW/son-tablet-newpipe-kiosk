@@ -57,6 +57,18 @@ $requiredFiles = @(
 )
 foreach ($file in $requiredFiles) { Require-File $file }
 
+$workflowPath = Join-Path $Root '.github/workflows/validate.yml'
+$workflowText = Get-Content -LiteralPath $workflowPath -Raw
+$readmeText = Get-Content -LiteralPath (Join-Path $Root 'README.md') -Raw
+$checkoutCount = ([regex]::Matches($workflowText, 'actions/checkout@')).Count
+$hygieneCount = ([regex]::Matches($workflowText, 'git diff --check')).Count
+if ($checkoutCount -eq 0 -or $checkoutCount -ne $hygieneCount) {
+    Add-Failure 'every workflow checkout must have exactly one patch-hygiene check'
+}
+if (-not $readmeText.Contains('git diff --check')) {
+    Add-Failure 'README must document the patch-hygiene check'
+}
+
 $git = Get-Command git -ErrorAction SilentlyContinue
 if ($git) {
     $tracked = @(& $git.Source -C $Root ls-files)

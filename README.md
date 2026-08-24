@@ -85,6 +85,7 @@ For the beginner-friendly setup path, see
 6. Before committing source changes, run the repository gate:
 
    ```powershell
+   git diff --check
    pwsh -NoProfile -File .\tests\validate-repository.ps1
    ```
 
