@@ -122,7 +122,7 @@ Use the read-only checks first and keep the tablet's recovery path available.
   `HEALTH-CHECK.ps1 -DeviceSerial <tablet-serial>`, review the active stack and
   phase configuration, and verify the actual tablet manually before redeploying.
 - If the source gate fails, run
-  `pwsh -NoProfile -File .\\tests\\validate-repository.ps1`,
+  `pwsh -NoProfile -File .\tests\validate-repository.ps1`,
   `git diff --check`, and the relevant shell/Python checks from the repository
   root. A passing source check does not replace live-device validation.
 - If a device is left in an unsafe or unexpected state, stop automation,
