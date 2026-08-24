@@ -8,7 +8,7 @@ The project keeps the tablet in a controlled NewPipe playback path, restricts
 daytime selection to configured subscriptions, applies time-based volume and
 brightness settings, and recovers playback when the active session stops.
 
-## See it at a glance
+## Features
 
 | Capability | Behavior |
 | --- | --- |
@@ -46,6 +46,16 @@ For the beginner-friendly setup path, see
 - `README-KIOSK.md`, `ACTIVE-STACK.md`, `GOAL.md`, and
   `BUILD-AND-ARTIFACTS.md` — operating model, active control path, goals, and
   source/artifact boundary.
+
+
+## Prerequisites
+
+The host workstation needs PowerShell 5.1+ (PowerShell 7 is recommended),
+Git, Python 3.11, Bash (Git for Windows is sufficient), and Android platform
+tools. The target must be an authorized Android tablet with the required
+NewPipe, Termux, Kiosk Booter, and optional support-app setup. ADB pairing,
+accessibility permissions, storage, and the actual playback state are device
+checks; the source validator cannot prove them.
 
 ## Quick start for an existing setup
 
@@ -96,6 +106,30 @@ scripts. The target device, package versions, accessibility permissions, and
 live playback state must be verified on the actual tablet; a passing source
 validation run is not a substitute for that device check.
 
+
+## Troubleshooting
+
+Use the read-only checks first and keep the tablet's recovery path available.
+
+- If prerequisites or ignored deployment artifacts are missing, run
+  `CHECK-PREREQUISITES.ps1` with the same artifact requirement used by the
+  deployment plan; rebuild or restore artifacts deliberately instead of
+  committing them.
+- If ADB cannot find the tablet, pair it over USB or Wi-Fi again and run
+  `GET-DEVICE-SERIAL.ps1 -Wait -Copy`. Pass the printed serial explicitly;
+  never guess a device target.
+- If deployment completes but playback or kiosk behavior is wrong, run
+  `HEALTH-CHECK.ps1 -DeviceSerial <tablet-serial>`, review the active stack and
+  phase configuration, and verify the actual tablet manually before redeploying.
+- If the source gate fails, run
+  `pwsh -NoProfile -File .\\tests\\validate-repository.ps1`,
+  `git diff --check`, and the relevant shell/Python checks from the repository
+  root. A passing source check does not replace live-device validation.
+- If a device is left in an unsafe or unexpected state, stop automation,
+  restore the approved kiosk path manually, and use the documented recovery
+  procedure in [GETTING-STARTED.md](GETTING-STARTED.md#common-issues). Do not
+  upload device logs, cookies, serials, or screenshots to the public repository.
+
 ## Public-repository boundary
 
 This checkout intentionally contains source and documentation only. It does
@@ -132,3 +166,7 @@ and compiled artifacts remain runtime-only inputs.
 See [SECURITY.md](SECURITY.md) for private vulnerability reporting. Review the
 target device, repository owner, and Termux `run-as` boundary before any push
 or deployment.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
