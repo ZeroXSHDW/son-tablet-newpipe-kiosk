@@ -8,6 +8,7 @@ Read the repository README and inspect the current branch before editing. Keep c
 
 Run the strongest documented local gate before requesting review:
 
+- use the Python runtime pinned in `.python-version` (currently 3.11), matching CI;
 - run the repository's documented test, lint, type-check, build, audit, or shell-validation commands;
 - run `git diff --check` (the CI-blocking patch-hygiene gate);
 - add or update a regression test for every repaired contract or failure path;
