@@ -8,16 +8,25 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: kiosk-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   repository-validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          python-version: '3.x'
+          persist-credentials: false
+      - name: Check patch hygiene
+        run: git diff --check
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version-file: .python-version
       - name: Validate source, policy, and configuration
         shell: pwsh
         run: ./tests/validate-repository.ps1

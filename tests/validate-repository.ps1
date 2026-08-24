@@ -35,6 +35,7 @@ Write-Host "Validating $Root" -ForegroundColor Cyan
 
 $requiredFiles = @(
     'README-KIOSK.md',
+    '.python-version',
     'GOAL.md',
     'ACTIVE-STACK.md',
     'BUILD-AND-ARTIFACTS.md',
@@ -56,6 +57,52 @@ $requiredFiles = @(
     'termux_scripts/kioskbooter/res/xml/accessibility_service_config.xml'
 )
 foreach ($file in $requiredFiles) { Require-File $file }
+
+$workflowPath = Join-Path $Root '.github/workflows/validate.yml'
+$workflowText = Get-Content -LiteralPath $workflowPath -Raw
+$readmeText = Get-Content -LiteralPath (Join-Path $Root 'README.md') -Raw
+
+$requiredReadmeHeadings = @(
+    '## Features',
+    '## Prerequisites',
+    '## Troubleshooting',
+    '## Architecture',
+    '## Security',
+    '## License'
+)
+foreach ($heading in $requiredReadmeHeadings) {
+    if (-not $readmeText.Contains($heading)) {
+        Add-Failure "README is missing required operator heading: $heading"
+    }
+}
+if (-not $readmeText.Contains('CHECK-PREREQUISITES.ps1')) {
+    Add-Failure 'README must expose the operator prerequisites check'
+}
+if (-not $readmeText.Contains('GETTING-STARTED.md#common-issues')) {
+    Add-Failure 'README must link the documented recovery path'
+}
+
+$checkoutCount = ([regex]::Matches($workflowText, 'actions/checkout@')).Count
+$hygieneCount = ([regex]::Matches($workflowText, 'git diff --check')).Count
+if ($checkoutCount -eq 0 -or $checkoutCount -ne $hygieneCount) {
+    Add-Failure 'every workflow checkout must have exactly one patch-hygiene check'
+}
+if (-not $readmeText.Contains('git diff --check')) {
+    Add-Failure 'README must document the patch-hygiene check'
+}
+$pythonVersionPath = Join-Path $Root '.python-version'
+if (Test-Path -LiteralPath $pythonVersionPath -PathType Leaf) {
+    $pythonVersion = (Get-Content -LiteralPath $pythonVersionPath -Raw).Trim()
+    if ($pythonVersion -ne '3.11') {
+        Add-Failure ".python-version must pin the CI-supported Python 3.11 runtime (found '$pythonVersion')"
+    }
+    if (-not $workflowText.Contains('python-version-file: .python-version')) {
+        Add-Failure 'workflow must consume the checked-in .python-version pin'
+    }
+    if (-not $readmeText.Contains('.python-version')) {
+        Add-Failure 'README must document the checked-in Python runtime pin'
+    }
+}
 
 $git = Get-Command git -ErrorAction SilentlyContinue
 if ($git) {
@@ -120,16 +167,19 @@ foreach ($file in Get-ChildItem -LiteralPath $Root -Recurse -File -Filter '*.jso
 }
 
 $python = Get-Command python -ErrorAction SilentlyContinue
+if (-not $python) {
+    $python = Get-Command python3 -ErrorAction SilentlyContinue
+}
 if ($python) {
     foreach ($file in Get-ChildItem -LiteralPath $Root -Recurse -File -Filter '*.py') {
         if ($file.FullName -match '\\.git\\') { continue }
-        & $python.Source -m py_compile -- $file.FullName
+        & $python.Source -m py_compile $file.FullName
         if ($LASTEXITCODE -ne 0) {
             Add-Failure "Python compilation failed: $($file.FullName)"
         }
     }
 } else {
-    Add-Failure 'python is required for Python source validation'
+    Add-Failure 'python or python3 is required for Python source validation'
 }
 
 $bashPath = $null
