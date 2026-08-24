@@ -61,6 +61,27 @@ foreach ($file in $requiredFiles) { Require-File $file }
 $workflowPath = Join-Path $Root '.github/workflows/validate.yml'
 $workflowText = Get-Content -LiteralPath $workflowPath -Raw
 $readmeText = Get-Content -LiteralPath (Join-Path $Root 'README.md') -Raw
+
+$requiredReadmeHeadings = @(
+    '## Features',
+    '## Prerequisites',
+    '## Troubleshooting',
+    '## Architecture',
+    '## Security',
+    '## License'
+)
+foreach ($heading in $requiredReadmeHeadings) {
+    if (-not $readmeText.Contains($heading)) {
+        Add-Failure "README is missing required operator heading: $heading"
+    }
+}
+if (-not $readmeText.Contains('CHECK-PREREQUISITES.ps1')) {
+    Add-Failure 'README must expose the operator prerequisites check'
+}
+if (-not $readmeText.Contains('GETTING-STARTED.md#common-issues')) {
+    Add-Failure 'README must link the documented recovery path'
+}
+
 $checkoutCount = ([regex]::Matches($workflowText, 'actions/checkout@')).Count
 $hygieneCount = ([regex]::Matches($workflowText, 'git diff --check')).Count
 if ($checkoutCount -eq 0 -or $checkoutCount -ne $hygieneCount) {
