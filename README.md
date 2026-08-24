@@ -49,8 +49,9 @@ For the beginner-friendly setup path, see
 
 ## Quick start for an existing setup
 
-1. Install PowerShell 5.1+, Git, Python 3, Bash (Git for Windows is
-   sufficient), and Android platform tools on the host.
+1. Install PowerShell 5.1+, Git, Python 3.11, Bash (Git for Windows is
+   sufficient), and Android platform tools on the host. The repository's CI
+   runtime is pinned in [`.python-version`](.python-version).
 2. Restore or build the ignored deployment artifacts described in
    `BUILD-AND-ARTIFACTS.md`, then run the read-only preflight:
 
