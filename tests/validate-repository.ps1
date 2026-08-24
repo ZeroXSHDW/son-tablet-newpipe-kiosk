@@ -35,6 +35,7 @@ Write-Host "Validating $Root" -ForegroundColor Cyan
 
 $requiredFiles = @(
     'README-KIOSK.md',
+    '.python-version',
     'GOAL.md',
     'ACTIVE-STACK.md',
     'BUILD-AND-ARTIFACTS.md',
@@ -67,6 +68,19 @@ if ($checkoutCount -eq 0 -or $checkoutCount -ne $hygieneCount) {
 }
 if (-not $readmeText.Contains('git diff --check')) {
     Add-Failure 'README must document the patch-hygiene check'
+}
+$pythonVersionPath = Join-Path $Root '.python-version'
+if (Test-Path -LiteralPath $pythonVersionPath -PathType Leaf) {
+    $pythonVersion = (Get-Content -LiteralPath $pythonVersionPath -Raw).Trim()
+    if ($pythonVersion -ne '3.11') {
+        Add-Failure ".python-version must pin the CI-supported Python 3.11 runtime (found '$pythonVersion')"
+    }
+    if (-not $workflowText.Contains('python-version-file: .python-version')) {
+        Add-Failure 'workflow must consume the checked-in .python-version pin'
+    }
+    if (-not $readmeText.Contains('.python-version')) {
+        Add-Failure 'README must document the checked-in Python runtime pin'
+    }
 }
 
 $git = Get-Command git -ErrorAction SilentlyContinue
